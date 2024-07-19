@@ -123,9 +123,13 @@ def get_model_parallel_rank():
 
 
 def get_model_parallel_world_size():
+    print("wenxin: get_model_parallel_world_size")
     if USE_CUDA:
         return dist.get_world_size()
-    return xm.xrt_world_size()
+    print("wenxin: entering xm.xrt_world_size()")
+    temp = xm.xrt_world_size()
+    print("wenxin: successully run xm.xrt_world_size()", temp)
+    return temp 
 
 
 def get_model_parallel_group():
