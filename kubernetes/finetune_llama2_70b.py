@@ -72,3 +72,5 @@ trainer = SFTTrainer(
 print("----4----")
 
 trainer.train()
+
+print("----5----")
