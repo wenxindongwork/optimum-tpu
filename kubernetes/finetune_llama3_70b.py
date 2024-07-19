@@ -19,7 +19,7 @@ def preprocess_function(sample):
     return sample
 
 
-model_id = "meta-llama/Llama-2-70b-hf"
+model_id = "meta-llama/Meta-Llama-3-70B"
 
 fsdp_v2.use_fsdp_v2()
 
@@ -57,7 +57,7 @@ trainer = SFTTrainer(
         per_device_train_batch_size=64,
         num_train_epochs=1,
         max_steps=-1,
-        output_dir="./output_llama2_70b",
+        output_dir="./output_llama3_70b",
         optim="adafactor",
         logging_steps=1,
         dataloader_drop_last = True,  # Required for FSDPv2.
