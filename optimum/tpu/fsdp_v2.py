@@ -26,7 +26,7 @@ def use_fsdp_v2():
     Enable FSDPv2 for TPU training.
     """
     import torch_xla.runtime as xr
-
+    print("WenXin: use_fsdp_v2()")
     # FSDPv2 requires SPMD to be enabled.
     xr.use_spmd()
 
@@ -107,4 +107,5 @@ def get_fsdp_training_args(model: PreTrainedModel) -> Dict:
         "fsdp": "full_shard",
         "fsdp_config": get_fsdp_config(cls_to_wrap),
     }
+    print("WenXin: fsdp_training_args", fsdp_training_args)
     return fsdp_training_args
