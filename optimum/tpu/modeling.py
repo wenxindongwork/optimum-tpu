@@ -60,9 +60,12 @@ class AutoModelForCausalLM(BaseAutoModelForCausalLM):
             logger.debug(f"Device set to: {device}")
         else:
             device = "xla"
+        print("wenxin: device = ", device)
         cls = config_name_to_class(pretrained_model_name_or_path)
         model = cls.from_pretrained(pretrained_model_name_or_path, *model_args, **kwargs)
+        print("wenxin: moving model to device")
         model.to(device)
+        print("wenxin: model moved to device")
 
         # Update config with specific data)
         if task is not None or getattr(model.config, "task", None) is None:
