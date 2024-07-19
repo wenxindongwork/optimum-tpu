@@ -24,7 +24,7 @@ fsdp_v2.use_fsdp_v2()
 
 print("----0----")
 
-dataset = load_dataset("databricks/databricks-dolly-15k", split="train")
+dataset = load_dataset("databricks/databricks-dolly-15k", split="train[:5%]")
 
 tokenizer = AutoTokenizer.from_pretrained(model_id)
 
