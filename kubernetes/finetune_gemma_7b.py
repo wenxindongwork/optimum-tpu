@@ -18,7 +18,7 @@ def preprocess_function(sample):
     return sample
 
 
-model_id = "google/gemma-2b"
+model_id = "google/gemma-7b"
 
 fsdp_v2.use_fsdp_v2()
 
@@ -56,7 +56,7 @@ trainer = SFTTrainer(
         per_device_train_batch_size=64,
         num_train_epochs=1,
         max_steps=-1,
-        output_dir="./output",
+        output_dir="./output_gemma_7b",
         optim="adafactor",
         logging_steps=1,
         dataloader_drop_last = True,  # Required for FSDPv2.
