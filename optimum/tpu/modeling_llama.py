@@ -940,14 +940,19 @@ class LlamaModel(LlamaPreTrainedModel):
 
     def __init__(self, config: LlamaConfig, rank: Optional[int] = None, world_size: Optional[int] = None):
         super().__init__(config)
+        print("wenxin: LlamaModel __init__()")
         if rank is None:
             self.rank = get_model_parallel_rank()
+            print("wenxin. rank = ", rank)
         else:
             self.rank = rank
         if world_size is None:
+            print("wenxin. getting world size...")
             self.world_size = get_model_parallel_world_size()
+            print("wenxin: world size = ", self.world_size)
         else:
             self.world_size = world_size
+        
         self.padding_idx = config.pad_token_id
         self.vocab_size = config.vocab_size
 
@@ -1654,4 +1659,4 @@ class LlamaForQuestionAnswering(LlamaPreTrainedModel):
         # Unless specified otherwise, the model weights type will be bfloat16
         torch_dtype = kwargs.pop("torch_dtype", torch.bfloat16)
         # forward to base implementation
-        return super().from_pretrained(pretrained_model_name_or_path, *model_args, torch_dtype=torch_dtype, **kwargs)
+        return super().from_pretrained(pretrained_model_name_or_path, device_map="auto", *model_args, torch_dtype=torch_dtype, **kwargs)

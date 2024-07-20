@@ -62,7 +62,9 @@ class AutoModelForCausalLM(BaseAutoModelForCausalLM):
             device = "xla"
         print("wenxin: device = ", device)
         cls = config_name_to_class(pretrained_model_name_or_path)
-        print("wenxin: loading model")
+        print("wenxin: loading model", cls)
+        print("wenxin: model_args = ", *model_args)
+        print("wenxin: **kwargs = ", **kwargs)
         model = cls.from_pretrained(pretrained_model_name_or_path, *model_args, **kwargs)
         print("wenxin: moving model to device")
         model.to(device)
@@ -79,3 +81,5 @@ class AutoModelForCausalLM(BaseAutoModelForCausalLM):
         model.eval()
 
         return model
+
+

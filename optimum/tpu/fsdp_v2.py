@@ -27,6 +27,30 @@ def use_fsdp_v2():
     """
     import torch_xla.runtime as xr
     print("WenXin: use_fsdp_v2()")
+    num_devices = xr.global_device_count()
+    print("wenxin: num_devices = ", num_devices)
+    
+    local_process_count = xr.local_process_count()
+    print("wenxin local_process_count:", local_process_count)
+    global_device_count = xr.global_device_count()
+    print("wenxin global_device_count:", global_device_count)
+    world_size = xr.world_size()
+    print("world_size = ", world_size)
+    local_device_count = xr.local_device_count()
+    print("local_device_count = ", local_device_count)
+    addressable_device_count = xr.addressable_device_count()
+    print("addressable_device_count =", addressable_device_count)
+    global_ordinal = xr.global_ordinal()
+    print("global_ordinal = ", global_ordinal)
+    local_ordinal = xr.local_ordinal()
+    print("local_ordinal = ", local_ordinal)
+    process_index = xr.process_index()
+    print("process_index = ", process_index)
+    process_count = xr.process_count()
+    print("process_count = ", process_count)
+    host_index = xr.host_index()
+    print("wenxin host_index = ", host_index)
+
     # FSDPv2 requires SPMD to be enabled.
     xr.use_spmd()
 
