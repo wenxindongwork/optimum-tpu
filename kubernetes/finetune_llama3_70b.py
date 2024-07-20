@@ -25,7 +25,7 @@ fsdp_v2.use_fsdp_v2()
 
 print("----0----")
 
-dataset = load_dataset("databricks/databricks-dolly-15k", split="train[:5%]")
+dataset = load_dataset("databricks/databricks-dolly-15k", split="train[:05%]")
 
 tokenizer = AutoTokenizer.from_pretrained(model_id)
 
@@ -54,7 +54,7 @@ trainer = SFTTrainer(
     model=model,
     train_dataset=data,
     args=TrainingArguments(
-        per_device_train_batch_size=64,
+        per_device_train_batch_size=1,
         num_train_epochs=1,
         max_steps=-1,
         output_dir="./output_llama3_70b",
