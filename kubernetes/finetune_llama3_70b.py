@@ -33,7 +33,7 @@ data = dataset.map(preprocess_function, remove_columns=list(dataset.features))
 
 print("----1----")
 
-model = AutoModelForCausalLM.from_pretrained(model_id, use_cache=False)
+model = AutoModelForCausalLM.from_pretrained(model_id, use_cache=True, device_map="auto")
 
 print("----2----")
 
