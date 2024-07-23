@@ -1,11 +1,12 @@
 from optimum.tpu import fsdp_v2
 from datasets import load_dataset
 from transformers import AutoTokenizer
-from optimum.tpu import AutoModelForCausalLM
+# from optimum.tpu import AutoModelForCausalLM
+from transformers import AutoModelForCausalLM
 from peft import LoraConfig
 from trl import SFTTrainer
 from transformers import TrainingArguments
-
+# import torch_xla.core.xla_model as xm
 
 
 def preprocess_function(sample):
@@ -48,6 +49,9 @@ print("----3----")
 
 # Set up the FSDP arguments
 fsdp_training_args = fsdp_v2.get_fsdp_training_args(model)
+
+# print("wenxin: get_memory info")
+# print(xm.get_memory_info())
 
 # Set up the trainer
 trainer = SFTTrainer(
