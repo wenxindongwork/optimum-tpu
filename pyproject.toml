@@ -44,7 +44,7 @@ keywords = [
 dependencies = [
     "transformers @ git+https://github.com/wenxindongwork/transformers.git@main",
     "torch >= 2.3.0, <= 2.4.0",
-    "torch-xla[tpu] @ git+https://github.com/wenxindongwork/xla.git@optimum-tpu",
+    "torch-xla@ git+https://github.com/wenxindongwork/xla.git@optimum-tpu",
     "loguru == 0.6.0",
     "sentencepiece == 0.2.0",
     "trl @ git+https://github.com/wenxindongwork/trl.git@main"
