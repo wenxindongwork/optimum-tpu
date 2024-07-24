@@ -28,7 +28,8 @@ spec:
       containers:
       - name: optimum-tpu
         image: gcr.io/tpu-vm-gke-testing/ricliu-optimum-tpu:20240716
-        command: ["/bin/sh", "-c", "pip uninstall -y transformers && huggingface-cli login --token $HF_TOKEN && mkdir fork && cd fork && git clone 'https://${GIT_TOKEN}@github.com/wenxindongwork/optimum-tpu.git && cd optimum-tpu' && pip install -e . && python kubernetes/finetune_llama3_70b.py"]
+        # command: ["/bin/sh", "-c", "pip uninstall -y transformers && huggingface-cli login --token $HF_TOKEN && mkdir fork && cd fork && git clone 'https://${GIT_TOKEN}@github.com/wenxindongwork/optimum-tpu.git && cd optimum-tpu' && pip install -e . && python kubernetes/finetune_llama3_70b.py"]
+        command: ["/bin/sh", "-c", "huggingface-cli login --token $HF_TOKEN && mkdir fork && cd fork && git clone 'https://${GIT_TOKEN}@github.com/wenxindongwork/optimum-tpu.git && python optimum-tpu/kubernetes/finetune_llama3_70b.py"]
         ports:
         - containerPort: 8471
         env:
