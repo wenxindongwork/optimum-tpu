@@ -24,7 +24,7 @@ lora_config = LoraConfig(
 )
 
 # Load the dataset and format it for training.
-data = load_dataset("Abirate/english_quotes", split="train")
+data = load_dataset("Abirate/english_quotes", split="train[:10%]")
 max_seq_length = 1024
 
 # Set up the FSDP config. To enable FSDP via SPMD, set xla_fsdp_v2 to True.
@@ -41,7 +41,7 @@ trainer = SFTTrainer(
     train_dataset=data,
     args=TrainingArguments(
         per_device_train_batch_size=64,  # This is actually the global batch size for SPMD.
-        num_train_epochs=100,
+        num_train_epochs=1,
         max_steps=-1,
         output_dir="./output",
         optim="adafactor",
