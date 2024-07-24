@@ -29,7 +29,7 @@ max_seq_length = 1024
 
 # Set up the FSDP config. To enable FSDP via SPMD, set xla_fsdp_v2 to True.
 fsdp_config = {"fsdp_transformer_layer_cls_to_wrap": [
-        "GemmaDecoderLayer"
+        "LlamaDecoderLayer"
     ],
     "xla": True,
     "xla_fsdp_v2": True,
