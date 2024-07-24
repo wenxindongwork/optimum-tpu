@@ -41,7 +41,7 @@ spec:
           valueFrom: 
             secretKeyRef:
               name: github
-              key: gittoken.txt
+              key: git_token.txt
         resources:
           limits:
             cpu: "8"
