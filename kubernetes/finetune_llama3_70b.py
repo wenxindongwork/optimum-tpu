@@ -34,7 +34,7 @@ data = dataset.map(preprocess_function, remove_columns=list(dataset.features))
 
 print("----1----")
 
-model = AutoModelForCausalLM.from_pretrained(model_id, use_cache=True, device_map="auto")
+model = AutoModelForCausalLM.from_pretrained("/usr/share/storage/llama3_70b/", use_cache=True, device_map="auto")
 
 print("----2----")
 
