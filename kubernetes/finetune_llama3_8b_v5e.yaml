@@ -6,7 +6,7 @@ spec:
   containers:
   - name: optimum-tpu-llama3-8b
     image: gcr.io/tpu-vm-gke-testing/ricliu-optimum-tpu:20240716
-    command: ["/bin/sh", "-c", "pip uninstall -y transformers && huggingface-cli login --token $HF_TOKEN && mkdir fork && cd fork && git clone 'https://${GIT_TOKEN}@github.com/wenxindongwork/optimum-tpu.git' && cd optimum-tpu && pip install -e . && PT_XLA_DEBUG=1 XLA_IR_DEBUG=1 XLA_HLO_DEBUG=1 XLA_SAVE_TENSORS_FMT='text' XLA_SAVE_TENSORS_FILE='/tmp/save1.ir' python kubernetes/finetune_llama3_8b.py"]
+    command: ["/bin/sh", "-c", "huggingface-cli login --token $HF_TOKEN && mkdir fork && cd fork && git clone 'https://${GIT_TOKEN}@github.com/wenxindongwork/optimum-tpu.git' && cd optimum-tpu && pip install -e . && PT_XLA_DEBUG=1 XLA_IR_DEBUG=1 XLA_HLO_DEBUG=1 XLA_SAVE_TENSORS_FMT='text' XLA_SAVE_TENSORS_FILE='/tmp/save1.ir' python kubernetes/finetune_llama3_8b.py"]
     # command: 
     #   - "sleep"
     #   - "604800"

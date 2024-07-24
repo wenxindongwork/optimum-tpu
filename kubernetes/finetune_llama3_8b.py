@@ -3,7 +3,7 @@ from datasets import load_from_disk
 from datasets import Dataset
 
 from transformers import AutoTokenizer
-# from optimum.tpu import AutoModelForCausalLM
+#from optimum.tpu import AutoModelForCausalLM
 from transformers import AutoModelForCausalLM
 from peft import LoraConfig
 from trl import ORPOTrainer, ORPOConfig
@@ -14,8 +14,6 @@ from transformers import TrainingArguments
 model_id = "meta-llama/Meta-Llama-3-8B-Instruct"
 
 fsdp_v2.use_fsdp_v2()
-
-
 
 print("----0----")
 
@@ -69,8 +67,7 @@ lora_config = LoraConfig(
 print("----3----")
 
 # Set up the FSDP arguments
-# fsdp_training_args = fsdp_v2.get_fsdp_training_args(model)
-
+#fsdp_training_args = fsdp_v2.get_fsdp_training_args(model)
 cls_to_wrap = "LlamaDecoderLayer"
 fsdp_training_args = {
     "fsdp": "full_shard",
@@ -78,12 +75,11 @@ fsdp_training_args = {
 }
 tokenizer.pad_token = tokenizer.eos_token
 
-
 orpo_config = ORPOConfig(
     max_length=1024,
     max_prompt_length=512,
     is_encoder_decoder=False,
-    dataset_num_proc=32,
+    dataset_num_proc=8,
     per_device_train_batch_size=64,
     num_train_epochs=32,
     max_steps=-1,
