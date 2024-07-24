@@ -48,7 +48,13 @@ lora_config = LoraConfig(
 print("----3----")
 
 # Set up the FSDP arguments
-fsdp_training_args = fsdp_v2.get_fsdp_training_args(model)
+# fsdp_training_args = fsdp_v2.get_fsdp_training_args(model)
+cls_to_wrap = "LlamaDecoderLayer"
+fsdp_training_args = {
+    "fsdp": "full_shard",
+    "fsdp_config": fsdp_v2.get_fsdp_config(cls_to_wrap),
+}
+tokenizer.pad_token = tokenizer.eos_token
 
 # print("wenxin: get_memory info")
 # print(xm.get_memory_info())
