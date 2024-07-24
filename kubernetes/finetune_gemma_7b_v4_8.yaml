@@ -3,6 +3,10 @@ kind: Pod
 metadata:
   name: optimum-tpu
 spec:
+  volumes:
+  - name: persistent-disk
+    persistentVolumeClaim:
+      claimName: wenxindong-optimum-tpu-claim
   containers:
   - name: optimum-tpu
     image: gcr.io/tpu-vm-gke-testing/ricliu-optimum-tpu:20240716
@@ -11,6 +15,9 @@ spec:
       - "604800"
     ports:
     - containerPort: 80
+    volumeMounts:
+    - mountPath: "/usr/share/storage"
+      name: persistent-disk
     env:
     - name: HF_TOKEN
       valueFrom:

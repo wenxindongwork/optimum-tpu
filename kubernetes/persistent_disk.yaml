@@ -7,10 +7,7 @@ spec:
   capacity:
     storage: 1000
   accessModes:
-    - ReadOnlyMany
-  claimRef:
-    namespace: default
-    name: wenxindong-optimum-tpu-claim
+    - ReadWriteOnce
   csi:
     driver: pd.csi.storage.gke.io
     volumeHandle: projects/tpu-vm-gke-testing/regions/us-central2/disks/wenxindong-disk-opt-tpu
@@ -25,7 +22,7 @@ spec:
   storageClassName: wenxindong-optimum-tpu-sc
   volumeName: wenxindong-optimum-tpu-volume
   accessModes:
-    - ReadOnlyMany
+    - ReadWriteOnce
   resources:
     requests:
       storage: 1000

@@ -53,7 +53,7 @@ tokenizer = AutoTokenizer.from_pretrained(model_id)
 
 print("----1----")
 
-model = AutoModelForCausalLM.from_pretrained(model_id, use_cache=False)
+model = AutoModelForCausalLM.from_pretrained("/usr/share/storage/llama3_8b/", use_cache=False)
 
 print("----2----")
 
