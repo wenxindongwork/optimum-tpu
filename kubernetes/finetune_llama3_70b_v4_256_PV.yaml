@@ -26,9 +26,10 @@ spec:
       subdomain: tpu-worker-svc
       restartPolicy: Never
       volumes:
-      - name: persistent_disk
+      - name: persistent-disk
         persistentVolumeClaim:
           claimName: wenxindong-optimum-tpu-claim
+          readOnly: true
       containers:
       - name: optimum-tpu
         image: gcr.io/tpu-vm-gke-testing/ricliu-optimum-tpu:20240716
@@ -41,7 +42,8 @@ spec:
         - containerPort: 8471
         volumeMounts:
         - mountPath: "/usr/share/storage"
-          name: persistent_disk
+          name: persistent-disk
+          readOnly: true
         env:
         - name: HF_TOKEN
           valueFrom:
